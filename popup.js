@@ -22,7 +22,7 @@ chrome.runtime.sendMessage({type: 'getFormData'}, function(response) {
 });
 
 // Save the form data when the "Save" button is clicked
-document.getElementById('saveButton').addEventListener('click', function() {
+document.getElementById('prefill-form').addEventListener('click', function() {
   // Get the form data from the input fields
   const name = nameInput.value;
   const email = emailInput.value;
