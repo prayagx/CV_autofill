@@ -28,6 +28,6 @@ document.getElementById("prefill-form").addEventListener("submit", function(even
     chrome.runtime.sendMessage({ type: "prefill-form", userData }, function(response) {
       // Display a status message to the user
       const statusDiv = document.getElementById("status");
-      statusDiv.innerHTML = response.message;
-    });
+      statusDiv.textContent = response.message;
+  });
   });
