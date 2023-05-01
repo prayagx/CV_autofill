@@ -1,0 +1,14 @@
+{
+    "name": "CV Prefiller",
+    "version": "1.0",
+    "description": "A simple CV prefiller extension",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab"
+    ],
+    "browser_action": {
+        "default_icon": "CV_img.jpeg", 
+        "default_popup": "popup.html"
+    }
+}
+  
