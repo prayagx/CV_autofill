@@ -31,4 +31,3 @@ document.getElementById("prefill-form").addEventListener("submit", function(even
       statusDiv.innerHTML = response.message;
     });
   });
-  
