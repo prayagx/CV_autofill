@@ -1,33 +1,47 @@
-// Listen for the form submit event
-document.getElementById("prefill-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting
-  
-    // Retrieve the user's data from the input fields
-    const firstName = document.getElementById("first-name").value;
-    const lastName = document.getElementById("last-name").value;
-    const email = document.getElementById("email").value;
-    const linkedin = document.getElementById("linkedin").value;
-    const github = document.getElementById("github").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const country = document.getElementById("country").value;
+// Get the input fields
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const linkedinInput = document.getElementById('linkedin');
+const githubInput = document.getElementById('github');
+const cityInput = document.getElementById('city');
+const stateInput = document.getElementById('state');
+const countryInput = document.getElementById('country');
 
-    // Create an object with the user's data
-    const userData = {
-      firstName,
-      lastName,
-      email,
-      linkedin,
-      github,
-      city,
-      state,
-      country
-    };
-  
-    // Send a message to the background script to fill in the form with the user's data
-    chrome.runtime.sendMessage({ type: "prefill-form", userData }, function(response) {
-      // Display a status message to the user
-      const statusDiv = document.getElementById("status");
-      statusDiv.textContent = response.message;
+// Load the stored form data
+chrome.runtime.sendMessage({type: 'getFormData'}, function(response) {
+  if (response.data) {
+    // Fill in the form fields with the stored data
+    nameInput.value = response.data.name;
+    emailInput.value = response.data.email;
+    linkedinInput.value = response.data.linkedin;
+    githubInput.value = response.data.github;
+    cityInput.value = response.data.city;
+    stateInput.value = response.data.state;
+    countryInput.value = response.data.country;
+  }
+});
+
+// Save the form data when the "Save" button is clicked
+document.getElementById('saveButton').addEventListener('click', function() {
+  // Get the form data from the input fields
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const linkedin = linkedinInput.value;
+  const github = githubInput.value;
+  const city = cityInput.value;
+  const state = stateInput.value;
+  const country = countryInput.value;
+
+  // Send a message to the background script to store the form data
+  chrome.runtime.sendMessage({type: 'formData', data: {
+    name: name,
+    email: email,
+    linkedin: linkedin,
+    github: github,
+    city: city,
+    state: state,
+    country: country
+  }}, function(response) {
+    console.log('Form data stored:', response);
   });
-  });
+});
