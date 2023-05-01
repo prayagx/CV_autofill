@@ -11,7 +11,7 @@ document.getElementById("prefill-form").addEventListener("submit", function(even
     const city = document.getElementById("city").value;
     const state = document.getElementById("state").value;
     const country = document.getElementById("country").value;
-  
+
     // Create an object with the user's data
     const userData = {
       firstName,
