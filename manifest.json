@@ -4,7 +4,7 @@
     "description": "A simple CV prefiller extension",
     "manifest_version": 3,
     "permissions": [
-        "activeTab"
+        "activeTab, storage, webnavigation"
     ],
     "action": {
         "default_icon": "CV_img.jpeg", 
